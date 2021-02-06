@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>360&deg; Tour</title>
+    <meta name="description" content="360&deg; Tour • A-Frame">
+    <meta name="author" content="João Gomes •">
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+
+    <link
+        href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAFU0lEQVRYR72XW2xUVRSG/7VmaMbUaQVvVTHGaDHUlPScPdOKXFLUF7xQRfCaQEIQojwoosYnE/WJiGDCJYggXh5M0CAiRrlXjSmdnH1O4YFAxIAvIKIP09Z2as/Zy+w604xD22kpst/OnH32+tZa/1prD+EKLtd17ySiT40xKSLKENEiuoL2oZRqA/B5b2/vhkQi8aKItFxRAMdx+vv6+iqPHz/+d3NzcyKbzXZeDgBWSr0DYDmAHgBvaK03DxVZ13V/ArCrqqpqfVdX10sAHhwvgDW+HcCiEoOvaK3fLYVQSt1hjPkYQCMzH4nFYovHBeA4zhpmXgWgW0QeZOZaEdkKwJ67Smu9tpzGxgWglOoGUCkis33f/9EaS6VSS8YCMV6A3wFcT0RLPc/bVvC2GIKIXvY8b13hnVLKM8ZEQRA02d8uCWD69OmT+vr6FonI68x8IwABsExrbcM/sIaDcBynPRaLRZ7n3TtmANd1ZzHzsiiKFjBzIm/rLIAPjTFbgyD4tTjnxRAistL3/fdKNVE2AvX19RMnTJiwmIieA1CXP8CIyF4i2pJMJve0traGw4mtHMSwAEqpmUS0vNhbY8w5Zt42lLcjqb1EmCu01psK+/8DYL2tqKiwNb2syNvCXhvedSJyIh6Pn+7u7j5jO1q5MivVhDEmx8zXaa1t0/pXhKlUyjHGrBSRhYXcGmN+Y+btzLzVGFMJYBaAu40xtcx8O4BbAfwC4Aci2ul53oG8GAdsKqWqiajF87xP7HM6na4Jw/AkM1fF4/Ga9vb28wMAqVRqXhRFO5k5lj9gn4hsqaqq2j1Sbuvq6ioSiUQ9ETXbTmiMqSCi13zf/9oe7LruCiJab0s0iqLvmPkwgCkictj3/fsGU6CUOmlfANgcRdHqjo6OM8VhdV13voi8z8xiheh53ldDhT2VSs0VkY3WQGdn5wvV1dUZANOsU8aYLus5gKOxWOz+TCbz5yCA4zhh3vvKQl6KDTiOcwHA3Pye3VprW/fWw4tmO4BzIrKDiGx6polIl4jEmfkqEfk+Ho8/Xmx8IAX5GX0PgB3JZPLZ0rArpWy3e8QChGG4MwiCmnyO24hoR09Pz8bCbA+CYGZzc3M8m822M7MLYHV/f//bsVisOggC2y8uWlYDjg0bgGoAXySTyaeLIVKpVIvVhDFmIAWFHA8124MgqLDiM8actV4DqNVaW6EOuwaqIJ1Op40x+wBcYxUtIk9prftH+tDOdiL6MplMbijMdq317Lz4NhDRQc/zHihXpoN9wHVdRUT7AUwUkV1E9MRIEEPN9kwmc1opdTSf/yd9398xaoBCP4ii6AAzTxKR3blcbuFYmo1Syk64IwAu9Pb2Th7Ntxe14nQ63RCGoYW4FsCebDa74NSpU30FT0rHaUnJbiOiJQDWaK1fLef9YCcs3ei6ri2hg7Zlisi3nZ2djxUgSsdp4dumpqaqMAyt0iujKJrS0dHx8yUD5MusHsBBe+EAsDeZTD7a2tqaG+5QpdTzADYZY1qDIJgzGuPDRqDwcTqdtr3/EIAbjDH7E4lES1tbW+9QhyulAgANRPSM53mfXRaAfMebKiKHmLnGlpaIzCvtmPkyzhhj/ujq6ppcrJlyIGUvJPnquCuKosPMfJNtWkT0cDGE4zgfMPNSAGu11vaWPOo1KgB7WmNj4xQLAeBm29fDMHzo2LFjf82YMSOZy+Ws+K4GMFVrfWLU1sd6KW1oaKiNxWIW4hYA9ho+H4AV31v22XbCsRgvK8JhxGb/3dh02IlXvGxavvnfAawBx3FusyUHYA4znxeRN33f/2isxu3+fwAAuML9lQbS6QAAAABJRU5ErkJggg=="
+        rel="icon" type="image/x-icon">
+
+    <script>
+        AFRAME.registerComponent('hotspots', {
+            init: function () {
+                this.el.addEventListener('reloadspots', function (evt) {
+
+                    //get the entire current spot group and scale it to 0
+                    var currspotgroup = document.getElementById(evt.detail.currspots);
+                    currspotgroup.setAttribute("scale", "0 0 0");
+
+                    //get the entire new spot group and scale it to 1
+                    var newspotgroup = document.getElementById(evt.detail.newspots);
+                    newspotgroup.setAttribute("scale", "1 1 1");
+                });
+            }
+        });
+        AFRAME.registerComponent('spot', {
+            schema: {
+                linkto: { type: "string", default: "" },
+                spotgroup: { type: "string", default: "" }
+            },
+            init: function () {
+
+                //add image source of hotspot icon
+                // this.el.setAttribute("src", "#hotspot");
+                //make the icon look at the camera all the time
+                this.el.setAttribute("look-at", "#cam");
+
+                var data = this.data;
+
+                this.el.addEventListener('click', function () {
+                    //set the skybox source to the new image as per the spot
+                    var sky = document.getElementById("skybox");
+                    sky.setAttribute("src", data.linkto);
+
+                    var spotcomp = document.getElementById("spots");
+                    var currspots = this.parentElement.getAttribute("id");
+                    //create event for spots component to change the spots data
+                    spotcomp.emit('reloadspots', { newspots: data.spotgroup, currspots: currspots });
+                });
+            }
+        });
+    </script>
+</head>
+
+<body>
+
+    <a-scene debug stats loading-screen="dotsColor: #C0C0C0; backgroundColor: #ffffff">
+        <a-assets>
+
+            <img id="point1" src="teste15.jpg" />
+            <img id="point2" src="teste17.jpg" />
+            <img id="point3" src="teste14.jpg" />
+            <img id="point4" src="teste9.jpg" />
+
+
+        </a-assets>
+
+        <a-sky id="skybox" src="#point1" rotation="0 -100 0"></a-sky>
+
+        <a-entity id="spots" hotspots>
+            <a-entity id="group-point1">
+
+                <a-text font="kelsonsans" value="Heaven, Mount Olympus" width="6" position="-2.5 0.25 -1.5"
+                    rotation="0 15 0">
+                </a-text>
+
+                <a-octahedron spot="linkto:#point2;spotgroup:group-point2" color="#ffffff" radius="0.4"
+                    position="4 1 -3"
+                    animation="property: object3D.rotation.y; to: 360; loop: true; easing: linear; dur: 3000">
+                </a-octahedron>
+
+                <a-text font="kelsonsans" value="Go To Snow" width="6" position="4.5 1 -2" rotation="0 0 0"></a-text>
+            </a-entity>
+            <a-entity id="group-point2" scale="0 0 0">
+
+                <a-octahedron spot="linkto:#point1;spotgroup:group-point1" color="#C0C0C0" radius="0.4"
+                    position="4 1 -3"></a-octahedron>
+                <a-octahedron spot="linkto:#point3;spotgroup:group-point3" color="#C0C0C0" radius="0.4"
+                    position="-1 1 -3"></a-octahedron>
+            </a-entity>
+            <a-entity id="group-point3" scale="0 0 0">
+
+                <a-octahedron spot="linkto:#point2;spotgroup:group-point2" color="#ffffff" radius="0.4"
+                    position="10 0 3"></a-octahedron>
+                <a-octahedron spot="linkto:#point4;spotgroup:group-point4" color="#ffffff" radius="0.4"
+                    position="-10 0 -3"></a-octahedron>
+            </a-entity>
+            <a-entity id="group-point4" scale="0 0 0">
+
+
+                <a-octahedron spot="linkto:#point3;spotgroup:group-point3" color="#ffffff" radius="0.4"
+                    position="0 0 -10"></a-octahedron>
+            </a-entity>
+        </a-entity>
+
+
+
+
+
+        <!--  <a-camera position="2.5 1 4"></a-camera> -->
+
+
+        <a-entity id="cam" camera position="2.5 1 4" look-controls>
+            <!--   <a-entity cursor="fuse:true;fuseTimeout:2000" geometry="primitive:ring;radiusInner:0.015;radiusOuter:0.02"
+                position="0 0 -1.8" material="color:#ffffff"
+                animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
+                animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
+                animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1">
+            </a-entity>-->
+            <a-entity
+                animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
+                animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
+                animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
+                cursor="fuse: true;" material="color: #ffffff; shader: flat" position="0 0 -1.8"
+                geometry="primitive:ring;radiusInner:0.01;radiusOuter:0.02">
+            </a-entity>
+        </a-entity>
+    </a-scene>
+
+
+</body>
+
+</html>
