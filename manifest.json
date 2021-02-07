@@ -21,10 +21,10 @@
       "sizes": "192x192"
     }
   ],
-  "start_url": "/tour-a-frame/index.html",
+  "scope":"/",
+  "start_url": "/?home=true",
   "background_color": "#C0C0C0",
   "display": "fullscreen",
-  "scope": "tour-a-frame/*",
   "theme_color": "#C0C0C0",
   "shortcuts": [
     {
