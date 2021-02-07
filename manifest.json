@@ -21,10 +21,10 @@
       "sizes": "192x192"
     }
   ],
-  "start_url": "/",
+  "start_url": ".",
   "background_color": "#C0C0C0",
   "display": "fullscreen",
-  "scope": "/",
+  "scope": ".",
   "theme_color": "#C0C0C0",
   "shortcuts": [
     {
