@@ -5,7 +5,13 @@ var cacheName = 'v1';
 var cacheFiles = [
 	'./',
 	'./index.html',
-	'./src/app.js'
+	'./src/app.js',
+    './assets/startPoint.jpeg',
+    './assets/point1.jpg',
+    './assets/point2.jpg',
+    './assets/point3.jpg',
+    './assets/icon-192.png',
+    './assets/icon-512.png'
 	
 ]
 
