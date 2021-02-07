@@ -25,6 +25,8 @@ self.addEventListener('install', function(e) {
     	// Open the cache
 	    caches.open(cacheName).then(function(cache) {
 
+            cache.add('https://aframe.io/releases/1.2.0/aframe.min.js')
+
 	    	// Add all the default files to the cache
 			console.log('[ServiceWorker] Caching cacheFiles');
 			return cache.addAll(cacheFiles);
