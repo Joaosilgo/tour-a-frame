@@ -1,0 +1,32 @@
+{
+    "short_name": "Tour • A-Frame",
+    "name": "Tour • A-Frame",
+    "icons": [
+      {
+        "src": "/assets/icon-512.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      },
+      {
+        "src": "/assets/icon-192.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": "/?source=pwa",
+    "background_color": "#C0C0C0",
+    "display": "fullscreen",
+    "scope": "/",
+    "theme_color": "#C0C0C0",
+    "shortcuts": [
+      {
+        "name": "360° Tour • A-Frame",
+        "short_name": "Tour • A-Frame",
+        "description": "Tour • A-Frame",
+        "url": "/?source=pwa",
+        "icons": [{ "src": "/assets/icon-192.png", "sizes": "192x192" }]
+      }
+    ],
+    "description": "360° Tour • A-Frame"
+    
+  }
