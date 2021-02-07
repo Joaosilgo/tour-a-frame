@@ -42,7 +42,7 @@ self.addEventListener('install', function (e) {
     ); // end e.waitUntil
 });
 
-
+/*
 self.addEventListener('activate', (event) => {
     event.waitUntil((async () => {
         // Enable navigation preload if it's supported.
@@ -55,7 +55,8 @@ self.addEventListener('activate', (event) => {
     // Tell the active service worker to take control of the page immediately.
     self.clients.claim();
 });
-/*
+*/
+
 self.addEventListener('activate', function (e) {
     console.log('[ServiceWorker] Activated');
 
@@ -78,7 +79,7 @@ self.addEventListener('activate', function (e) {
 
 });
 
-*/
+
 self.addEventListener('fetch', function (e) {
     console.log('[ServiceWorker] Fetch', e.request.url);
 
