@@ -29,6 +29,8 @@ self.addEventListener('install', function(e) {
             cache.add('https://aframe.io/releases/1.2.0/aframe.min.js');
             cache.add('https://cdn.aframe.io/fonts/KelsonSans.fnt');
             cache.add('https://cdn.aframe.io/fonts/Roboto-msdf.json');
+            cache.add('https://cdn.aframe.io/fonts/KelsonSans.png');
+            cache.add('https://cdn.aframe.io/fonts/Roboto-msdf.png');
            
 
 	    	// Add all the default files to the cache
@@ -37,6 +39,20 @@ self.addEventListener('install', function(e) {
 	    })
 	); // end e.waitUntil
 });
+
+
+self.addEventListener('activate', (event) => {
+    event.waitUntil((async () => {
+        // Enable navigation preload if it's supported.
+        // See https://developers.google.com/web/updates/2017/02/navigation-preload
+        if ('navigationPreload' in self.registration) {
+            await self.registration.navigationPreload.enable();
+        }
+    })());
+    // Tell the active service worker to take control of the page immediately.
+    self.clients.claim();
+});
+
 
 
 self.addEventListener('activate', function(e) {
