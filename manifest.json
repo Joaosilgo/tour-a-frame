@@ -22,7 +22,7 @@
     }
   ],
   "scope": "/tour-a-frame/",
-  "start_url": "/tour-a-frame/?source=pwa",
+  "start_url": "/tour-a-frame/",
   "background_color": "#C0C0C0",
   "display": "fullscreen",
   "theme_color": "#C0C0C0",
