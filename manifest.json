@@ -34,7 +34,7 @@
       "url": "/?utm_source=homescreen",
       "icons": [
         {
-          "src": "/assets/icon-192.png",
+          "src": "assets/icon-192.png",
           "sizes": "192x192"
         }
       ]
