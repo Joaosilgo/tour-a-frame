@@ -31,7 +31,7 @@
       "name": "360° Tour • A-Frame",
       "short_name": "Tour • A-Frame",
       "description": "Tour • A-Frame",
-      "url": "/?utm_source=homescreen",
+      "url": "/tour-a-frame/?utm_source=homescreen",
       "icons": [
         {
           "src": "assets/icon-192.png",
