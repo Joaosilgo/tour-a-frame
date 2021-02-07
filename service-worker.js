@@ -11,7 +11,8 @@ var cacheFiles = [
     './assets/point2.jpg',
     './assets/point3.jpg',
     './assets/icon-192.png',
-    './assets/icon-512.png'
+    './assets/icon-512.png',
+    './manifest.json'
 	
 ]
 
