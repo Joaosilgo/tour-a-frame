@@ -21,7 +21,7 @@
       "sizes": "192x192"
     }
   ],
-  "scope":"tour-a-frame/*",
+  "scope":"/tour-a-frame/",
   "start_url": "/?home=true",
   "background_color": "#C0C0C0",
   "display": "fullscreen",
