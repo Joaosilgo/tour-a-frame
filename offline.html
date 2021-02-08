@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>360&deg; Tour</title>
     <meta name="description" content="360&deg; Tour • A-Frame">
+    <!--<meta http-equiv="refresh" content="30"> -->
     <meta name="author" content="João Gomes •">
     <link
         href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAFU0lEQVRYR72XW2xUVRSG/7VmaMbUaQVvVTHGaDHUlPScPdOKXFLUF7xQRfCaQEIQojwoosYnE/WJiGDCJYggXh5M0CAiRrlXjSmdnH1O4YFAxIAvIKIP09Z2as/Zy+w604xD22kpst/OnH32+tZa/1prD+EKLtd17ySiT40xKSLKENEiuoL2oZRqA/B5b2/vhkQi8aKItFxRAMdx+vv6+iqPHz/+d3NzcyKbzXZeDgBWSr0DYDmAHgBvaK03DxVZ13V/ArCrqqpqfVdX10sAHhwvgDW+HcCiEoOvaK3fLYVQSt1hjPkYQCMzH4nFYovHBeA4zhpmXgWgW0QeZOZaEdkKwJ67Smu9tpzGxgWglOoGUCkis33f/9EaS6VSS8YCMV6A3wFcT0RLPc/bVvC2GIKIXvY8b13hnVLKM8ZEQRA02d8uCWD69OmT+vr6FonI68x8IwABsExrbcM/sIaDcBynPRaLRZ7n3TtmANd1ZzHzsiiKFjBzIm/rLIAPjTFbgyD4tTjnxRAistL3/fdKNVE2AvX19RMnTJiwmIieA1CXP8CIyF4i2pJMJve0traGw4mtHMSwAEqpmUS0vNhbY8w5Zt42lLcjqb1EmCu01psK+/8DYL2tqKiwNb2syNvCXhvedSJyIh6Pn+7u7j5jO1q5MivVhDEmx8zXaa1t0/pXhKlUyjHGrBSRhYXcGmN+Y+btzLzVGFMJYBaAu40xtcx8O4BbAfwC4Aci2ul53oG8GAdsKqWqiajF87xP7HM6na4Jw/AkM1fF4/Ga9vb28wMAqVRqXhRFO5k5lj9gn4hsqaqq2j1Sbuvq6ioSiUQ9ETXbTmiMqSCi13zf/9oe7LruCiJab0s0iqLvmPkwgCkictj3/fsGU6CUOmlfANgcRdHqjo6OM8VhdV13voi8z8xiheh53ldDhT2VSs0VkY3WQGdn5wvV1dUZANOsU8aYLus5gKOxWOz+TCbz5yCA4zhh3vvKQl6KDTiOcwHA3Pye3VprW/fWw4tmO4BzIrKDiGx6polIl4jEmfkqEfk+Ho8/Xmx8IAX5GX0PgB3JZPLZ0rArpWy3e8QChGG4MwiCmnyO24hoR09Pz8bCbA+CYGZzc3M8m822M7MLYHV/f//bsVisOggC2y8uWlYDjg0bgGoAXySTyaeLIVKpVIvVhDFmIAWFHA8124MgqLDiM8actV4DqNVaW6EOuwaqIJ1Op40x+wBcYxUtIk9prftH+tDOdiL6MplMbijMdq317Lz4NhDRQc/zHihXpoN9wHVdRUT7AUwUkV1E9MRIEEPN9kwmc1opdTSf/yd9398xaoBCP4ii6AAzTxKR3blcbuFYmo1Syk64IwAu9Pb2Th7Ntxe14nQ63RCGoYW4FsCebDa74NSpU30FT0rHaUnJbiOiJQDWaK1fLef9YCcs3ei6ri2hg7Zlisi3nZ2djxUgSsdp4dumpqaqMAyt0iujKJrS0dHx8yUD5MusHsBBe+EAsDeZTD7a2tqaG+5QpdTzADYZY1qDIJgzGuPDRqDwcTqdtr3/EIAbjDH7E4lES1tbW+9QhyulAgANRPSM53mfXRaAfMebKiKHmLnGlpaIzCvtmPkyzhhj/ujq6ppcrJlyIGUvJPnquCuKosPMfJNtWkT0cDGE4zgfMPNSAGu11vaWPOo1KgB7WmNj4xQLAeBm29fDMHzo2LFjf82YMSOZy+Ws+K4GMFVrfWLU1sd6KW1oaKiNxWIW4hYA9ho+H4AV31v22XbCsRgvK8JhxGb/3dh02IlXvGxavvnfAawBx3FusyUHYA4znxeRN33f/2isxu3+fwAAuML9lQbS6QAAAABJRU5ErkJggg=="
@@ -23,7 +24,8 @@
 
         body {
             font: 20px Helvetica, sans-serif;
-            color: #333;
+            color: #A9A9A9;
+            fill: #D3D3D3
         }
 
         article {
@@ -35,13 +37,105 @@
     </style>
 </head>
 
+<script type="text/javascript">
+    function checklength(i) {
+        'use strict';
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
+    }
+    var minutes, seconds, count, counter, timer;
+    count = 30; //seconds
+    counter = setInterval(timer, 1000);
+    function timer() {
+        'use strict';
+        count = count - 1;
+        minutes = checklength(Math.floor(count / 60));
+        seconds = checklength(count - minutes * 60);
+        if (count < 0) {
+            clearInterval(counter);
+            return;
+        }
+        document.getElementById("timer").innerHTML = 'Next refresh in ' + minutes + ':' + seconds + ' ';
+        if (count === 0) {
+            location.reload();
+        }
+    }
+</script>
+
 <body>
     <!-- This file lives in public/404.html -->
+
     <article>
         <div>
             <div>
+                <div class="img"><svg xmlns="http://www.w3.org/2000/svg" id="Capa_1"
+                        enable-background="new 0 0 511.982 511.982" height="50" viewBox="0 0 511.982 511.982"
+                        width="50">
+                        <g>
+                            <path
+                                d="m255.991 169.039c-30.327 0-55 24.673-55 55 0 25.127 16.943 46.356 40 52.904v171.096c0 8.284 6.716 15 15 15s15-6.716 15-15v-171.096c23.057-6.547 40-27.777 40-52.904 0-30.327-24.673-55-55-55z" />
+                            <path
+                                d="m186.597 143.845c-5.857-5.858-15.354-5.858-21.213 0-46.505 46.503-46.512 121.781 0 168.291 5.859 5.858 15.355 5.858 21.213 0 5.858-5.857 5.858-15.355 0-21.213-34.78-34.779-34.786-91.08 0-125.865 5.858-5.858 5.858-15.356 0-21.213z" />
+                            <path
+                                d="m346.597 143.845c-5.857-5.857-15.355-5.857-21.213 0s-5.858 15.355 0 21.213c34.701 34.701 34.701 91.164 0 125.865-5.858 5.857-5.858 15.355 0 21.213 5.859 5.858 15.355 5.858 21.213 0 46.399-46.397 46.399-121.894 0-168.291z" />
+                            <path
+                                d="m141.342 119.803c5.858-5.857 5.858-15.355 0-21.213-5.857-5.857-15.355-5.857-21.213 0-71.352 71.352-71.352 187.449 0 258.801 5.856 5.857 15.354 5.86 21.213 0 5.858-5.857 5.858-15.355 0-21.213-59.654-59.655-59.654-156.72 0-216.375z" />
+                            <path
+                                d="m391.852 98.59c-5.857-5.857-15.355-5.857-21.213 0s-5.858 15.355 0 21.213c59.654 59.655 59.654 156.72 0 216.375-5.858 5.857-5.858 15.355 0 21.213 5.859 5.858 15.355 5.858 21.213 0 71.352-71.352 71.352-187.449 0-258.801z" />
+                            <path
+                                d="m96.087 74.548c5.858-5.857 5.858-15.355 0-21.213-5.857-5.857-15.355-5.857-21.213 0-99.941 99.94-99.724 249.587 0 349.311 5.856 5.857 15.354 5.86 21.213 0 5.858-5.857 5.858-15.355 0-21.213-87.475-87.477-87.475-219.408 0-306.885z" />
+                            <path
+                                d="m437.107 53.335c-5.857-5.857-15.355-5.857-21.213 0s-5.858 15.355 0 21.213c87.477 87.477 87.477 219.408 0 306.885-5.858 5.857-5.858 15.355 0 21.213 5.859 5.858 15.355 5.858 21.213 0 99.94-99.939 99.725-249.587 0-349.311z" />
+                        </g>
+                    </svg></div>
+
+
                 <h1>It looks like you've lost your Internet connection</h1>
                 <p>You may need to reconnect to Wi-Fi.</p>
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                        id="Capa_1" x="0px" y="0px" width="57.951px" height="57.952px" viewBox="0 0 57.951 57.952"
+                        style="enable-background:new 0 0 57.951 57.952;" xml:space="preserve">
+                        <g>
+                            <path
+                                d="M34.777,33c10.084,0,19.084,5.742,22.927,14.629c0.658,1.521-0.041,3.287-1.563,3.943c-1.52,0.66-3.284-0.041-3.942-1.562   c-2.895-6.689-9.731-11.012-17.421-11.012c-7.868,0-14.747,4.32-17.523,11.004c-0.479,1.154-1.596,1.851-2.771,1.851   c-0.384,0-0.773-0.073-1.15-0.229c-1.53-0.637-2.255-2.393-1.619-3.922C15.422,38.771,24.476,33,34.777,33z M13.927,12.299   c0-3.423,2.777-6.201,6.201-6.201c3.423,0,6.199,2.777,6.199,6.201c0,3.426-2.776,6.203-6.199,6.203   C16.704,18.502,13.927,15.725,13.927,12.299z M42.044,12.299c0-3.423,2.78-6.201,6.202-6.201c3.424,0,6.201,2.777,6.201,6.201   c0,3.426-2.777,6.203-6.201,6.203C44.824,18.502,42.044,15.725,42.044,12.299z M1.274,21.696c2.374-2.483,8.499-2.301,8.499-2.301   c-1.581,2.289-1.902,4.191-1.902,4.191c-0.375,2.156-1.542,3.376-1.542,3.376c-2.564,2.684-5.211,0.11-5.211,0.11   C-1.486,24.584,1.274,21.696,1.274,21.696z M1.68,37.321c1.652-1.729,5.917-1.602,5.917-1.602   c-1.101,1.593-1.325,2.917-1.325,2.917c-0.261,1.501-1.073,2.351-1.073,2.351c-1.785,1.869-3.628,0.076-3.628,0.076   C-0.242,39.333,1.68,37.321,1.68,37.321z" />
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                    </svg>
+                </div>
+
+                <span id="timer"></span>
             </div>
         </div>
     </article>
