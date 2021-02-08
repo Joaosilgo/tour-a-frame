@@ -19,7 +19,14 @@
       "src": "assets/icon-512.png",
       "type": "image/png",
       "sizes": "192x192"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "196x196",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
+    
   ],
   "scope":"/tour-a-frame/",
   "start_url": "/tour-a-frame/?source=pwa",
