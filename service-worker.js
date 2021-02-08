@@ -53,7 +53,7 @@ self.addEventListener('activate', (event) => {
     self.clients.claim();
 });
 
-
+/*
 
 self.addEventListener('activate', function(e) {
     console.log('[ServiceWorker] Activated');
@@ -76,7 +76,7 @@ self.addEventListener('activate', function(e) {
 	); // end e.waitUntil
 
 });
-
+*/
 
 self.addEventListener('fetch', function(e) {
 	console.log('[ServiceWorker] Fetch', e.request.url);
